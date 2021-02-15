@@ -1,11 +1,6 @@
 import java.util.Arrays;
 
 public class SearchInSortedRotatedArray {
-    static void binarySearch(int arr[], int start, int end, int x) {
-
-    }
-
-    // binarySearch(double[] a, int fromIndex, int toIndex, double key)
     static int findPivot(int arr[], int start, int end) {
         // boundary condition
         if (start > end)
