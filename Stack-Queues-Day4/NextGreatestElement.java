@@ -1,10 +1,10 @@
 import java.util.*;
 
 public class NextGreatestElement {
-    static int getNextGreatestEleemnt(int arr[], int n) {
+    static int getNextGreatestElement(int arr[], int item) {
         int index = 0;
         for (int i = 0; i < arr.length; i++) {
-            if (arr[i] == n)
+            if (arr[i] == item)
                 break;
             index++;
         }
@@ -12,35 +12,35 @@ public class NextGreatestElement {
         Stack<Integer> s = new Stack<>();
 
         while (index < arr.length) {
-            if (s.isEmpty()) {
+            if (s.isEmpty() && arr[index] > item) {
                 s.push(arr[index]);
+                index++;
                 continue;
             }
-            if (arr[index] < n) {
-                while (!s.isEmpty() && arr[index] <= s.peek()) {
-                    s.pop();
-                }
+
+            if (arr[index] > item && arr[index] < s.peek()) {
                 s.push(arr[index]);
             }
             index++;
         }
         while (!s.isEmpty()) {
-            if (s.peek() <= n) {
+            if (s.peek() <= item) {
                 s.pop();
             } else {
                 break;
             }
         }
         if (s.isEmpty()) {
-            System.out.println("No element");
+            return -1;
         } else {
-            System.out.println("NGE: " + s.peek());
+            return s.peek();
         }
-        return 0;
     }
 
     public static void main(String[] args) {
-        int arr[] = { 2, 5, 2, 7, 10, 34, 23 };
-        getNextGreatestEleemnt(arr, 5);
+        int arr[] = { 2, 5, 3, 7, 10, 34, 23 };
+        for (int x : arr) {
+            System.out.println(x + " => " + getNextGreatestElement(arr, x));
+        }
     }
 }
