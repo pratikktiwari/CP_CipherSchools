@@ -1,7 +1,7 @@
 public class NQueens {
-    static void getQueenPosition(int boardSize, int queens) {
+    static void getQueenPosition(int boardSize) {
         int board[][] = new int[boardSize][boardSize];
-        placeQueens(board, 0, 8);
+        placeQueens(board, 0, boardSize);
 
         for (int row[] : board) {
             // System.out.println("\n_______________________________");
@@ -91,8 +91,7 @@ public class NQueens {
 
     public static void main(String[] args) {
         int board = 8;
-        int queens = 5;
-        getQueenPosition(board, queens);
+        getQueenPosition(board);
     }
 }
 // Output
