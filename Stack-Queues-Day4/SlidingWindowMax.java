@@ -1,22 +1,24 @@
-import java.util.*;
-import java.util.LinkedList;
+import java.util.PriorityQueue;
 
 public class SlidingWindowMax {
     static void findMaxOfWindow(int arr[], int k) {
-        Deque<Integer> q = new LinkedList<>();
-        int min = arr[0];
-        for (int i = 0; i < k; i++) {
-            if (q.isEmpty()) {
-                q.offer(arr[i]);
-            } else {
-                if (q.peek() < min) {
-                    q.offerFirst(arr[i]);
-                }
+        PriorityQueue<Integer> pq = new PriorityQueue<>(new Comparator<Integer>() {
+            @Override
+            public int compare(Integer x, Integer y) {
+                return x < y ? 1 : -1;
             }
+        });
+        for (int i = 0; i < arr.length - k + 1; i++) {
+            pq.clear();
+            for (int j = i; j < i + k; j++) {
+                pq.add(arr[j]);
+            }
+            System.out.println("Window [" + i + "] : " + pq.peek());
         }
-        for (int i = k + 1; i < n; i++) {
+    }
 
-        }
-
+    public static void main(String[] args) {
+        int arr[] = { 2, 5, 2, 7, 10, 34, 23 };
+        findMaxOfWindow(arr, 3);
     }
 }
