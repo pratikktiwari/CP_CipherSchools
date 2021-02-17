@@ -41,30 +41,37 @@ class LinkedList {
     }
 }
 
-public class RemoveDuplicates {
+public class RemoveDuplicatesUnsortedList {
     static Node removeDup(Node head) {
         Node ptr = head;
+        Node pre = ptr;
+        HashSet<Integer> s = new HashSet<>();
         while (ptr != null) {
-            Node iptr = ptr.next;
-            while (iptr != null && iptr.data == ptr.data) {
-                iptr = iptr.next;
+            if (s.contains(ptr.data)) {
+                pre.next = ptr.next;
+                ptr = ptr.next;
+                continue;
+            } else {
+                s.add(ptr.data);
             }
-            ptr.next = iptr;
+            pre = ptr;
             ptr = ptr.next;
         }
         return head;
     }
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         LinkedList l = new LinkedList();
         l.add(2);
+        l.add(2);
+        l.add(1);
         l.add(6);
+        l.add(1);
         l.add(6);
-        l.add(6);
-        l.add(8);
 
         l.traverse();
         l.head = removeDup(l.head);
         l.traverse();
+
     }
 }
