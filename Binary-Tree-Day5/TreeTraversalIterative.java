@@ -44,23 +44,6 @@ class Tree {
             }
         }
     }
-
-    void PreOrderIterative(TreeNode root) {
-        if (root == null)
-            return;
-        Stack<TreeNode> s = new Stack<>();
-        while (true) {
-            while (root != null) {
-                System.out.println(root.data + " ");
-                s.push(root);
-                root = root.left;
-            }
-            if (s.isEmpty())
-                return;
-            root = s.pop();
-            root = root.right;
-        }
-    }
 }
 
 public class TreeTraversalIterative {
