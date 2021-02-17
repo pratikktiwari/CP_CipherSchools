@@ -3,19 +3,18 @@ public class ExcelSheetColumnTitle {
 
     static String colTitle(int n) {
         if (n >= 1 && n <= 26) {
-            String bans = Character.toString((char) (64 + n));
-            return bans;
+            return Character.toString((char) (64 + n));
         }
-        String ans = "";
+        String res = "";
 
         if (n % 26 != 0) {
-            ans += colTitle(n / 26);
-            ans += colTitle(n % 26);
+            res += colTitle(n / 26);
+            res += colTitle(n % 26);
         } else {
-            ans += colTitle((n / 26) - 1);
-            ans += 'Z';
+            res += colTitle((n / 26) - 1);
+            res += 'Z';
         }
-        return ans;
+        return res;
     }
 
     public static void main(String[] args) {
