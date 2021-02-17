@@ -52,11 +52,17 @@ public class ReverseLinkedList {
         return dummy;
     }
 
-    static Node reverse(Node head) {
-        if (head == null)
-            return null;
-        head.next = reverse(head.next);
-        return head;
+    static Node reverseIterative(Node head) {
+        Node ptr = head;
+
+        Node pre = null;
+        while (ptr != null) {
+            Node temp = ptr.next;
+            ptr.next = pre;
+            pre = ptr;
+            ptr = temp;
+        }
+        return pre;
     }
 
     public static void main(String[] args) {
@@ -66,7 +72,7 @@ public class ReverseLinkedList {
         l.add(5);
 
         l.printList();
-        l.head = reverse(l.head);
+        l.head = reverseIterative(l.head);
         System.out.println("\nReversed:\n");
         l.printList();
     }
