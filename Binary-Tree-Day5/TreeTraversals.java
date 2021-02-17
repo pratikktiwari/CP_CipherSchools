@@ -1,4 +1,5 @@
 import java.util.Queue;
+import java.util.Stack;
 import java.util.LinkedList;
 import java.lang.Math;
 
@@ -47,6 +48,40 @@ class Tree {
         }
     }
 
+    void PreOrderIterative(TreeNode root) {
+        if (root == null)
+            return;
+        Stack<TreeNode> s = new Stack<>();
+        while (true) {
+            while (root != null) {
+                System.out.println(root.data + " ");
+                s.push(root);
+                root = root.left;
+            }
+            if (s.isEmpty())
+                return;
+            root = s.pop();
+            root = root.right;
+        }
+    }
+
+    void InOrderIterative(TreeNode root) {
+        if (root == null)
+            return;
+        Stack<TreeNode> s = new Stack<>();
+        while (true) {
+            while (root != null) {
+                s.push(root);
+                root = root.left;
+            }
+            if (s.isEmpty())
+                return;
+            root = s.pop();
+            System.out.println(root.data + " ");
+            root = root.right;
+        }
+    }
+
     void level_order_traverse() {
         if (root == null)
             return;
@@ -72,8 +107,13 @@ class Tree {
         }
     }
 }
+
 public class TreeTraversals {
     public static void main(String[] args) {
-        
+        Tree t = new Tree();
+        for (int i = 0; i < 7; i++) {
+            t.insert(i);
+        }
+        t.PreOrderIterative(t.root);
     }
 }
