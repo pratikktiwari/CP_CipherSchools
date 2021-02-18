@@ -67,7 +67,26 @@ public class CloneWithRandomPointers {
         System.out.println();
     }
 
-    // yet to be done
+    static Node cloneList(Node head) {
+        HashMap<Node, Node> map = new HashMap<>();
+        Node ptr = head;
+
+        while (ptr != null) {
+            map.put(ptr, new Node(ptr.val));
+            ptr = ptr.next;
+        }
+        ptr = head;
+
+        while (ptr != null) {
+            Node clone = map.get(ptr);
+            clone.next = map.get(ptr.next);
+            clone.random = map.get(ptr.random);
+
+            ptr = ptr.next;
+        }
+        return map.get(head);
+    }
+
     public static void main(String[] args) {
 
     }
