@@ -47,9 +47,24 @@ class LinkedList {
         }
     }
 }
-public class ReverseInKGroups {
-    //yet to be done
+
+public class ReorderList {
+    static Node reorderList(Node head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        Node head1, head2;
+        Node slowPtr = head, fastPtr = head;
+        while (fastPtr != null && fastPtr.next != null) {
+            slowPtr = slowPtr.next;
+            fastPtr = fastPtr.next.next;
+        }
+    }
+
     public static void main(String[] args) {
-        
+        LinkedList l = new LinkedList();
+        for (int i = 1; i <= 5; i++) {
+            l.add(i);
+        }
     }
 }
