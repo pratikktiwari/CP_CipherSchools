@@ -1,51 +1,37 @@
 import java.util.Stack;
 
 public class ValidParanthesis {
-    public static boolean isValid(String s) {
-        if (s.length() == 0)
-            return true;
-        if (s.length() == 1)
-            return false;
-        boolean track = false;
-        Stack<Character> left = new Stack<Character>();
-        Stack<Character> right = new Stack<Character>();
-        for (int i = 0; i < s.length(); i++) {
-            char c = s.charAt(i);
-            if (c == '(' || c == '{' || c == '[')
-                left.push(match(c));
-            else {
-                right.push(c);
-                if (left.isEmpty())
-                    return false;
-                if (left.pop() != c) {
-                    return false;
-                } else
-                    right.pop();
+    static void check(String str) {
+        Stack<Character> s = new Stack<Character>();
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) == '(')
+                s.push('(');
+            if (str.charAt(i) == ')' && !s.isEmpty()) {
+                s.pop();
+                continue;
+            }
+            if (s.isEmpty()) {
+                System.out.println("Not balanced");
+                return;
             }
         }
-        if (right.isEmpty() && left.isEmpty())
-            return true;
+        if (!s.isEmpty())
+            System.out.println("Not balanced");
         else
-            return false;
-
+            System.out.println("Balanced");
     }
 
-    static char match(char c) {
-        switch (c) {
-            case '(':
-                return ')';
-            case '{':
-                return '}';
-            case '[':
-                return ']';
-            default:
-                return '(';
-        }
-    }
-
-    public static void main(String[] args) {
-        String s1 = "()]{";
-        System.out.println(isValid(s1));
+    public static void main(String... args) {
+        String s1, s2, s3, s4, s5;
+        s1 = "(()(()()))";
+        s2 = "()((())";
+        s3 = "()()))()";
+        s4 = "(";
+        s5 = "))";
+        check(s1);
+        check(s2);
+        check(s3);
+        check(s4);
+        check(s5);
     }
 }
-// https://leetcode.com/problems/valid-parentheses/submissions/
