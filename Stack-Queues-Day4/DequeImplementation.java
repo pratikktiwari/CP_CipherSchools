@@ -1,3 +1,5 @@
+import java.lang.RuntimeException;
+
 class Deque {
     int arr[];
     int front;
@@ -21,8 +23,7 @@ class Deque {
 
     int offerFirst(int value) {
         if (isFull()) {
-            System.out.println("Queue is full");
-            return -1;
+            throw new RuntimeException("Queue is full");
         }
         if (front == -1) {
             front = 0;
@@ -38,8 +39,7 @@ class Deque {
 
     int offerLast(int value) {
         if (isFull()) {
-            System.out.println(" Queue is full ");
-            return -1;
+            throw new RuntimeException("Queue is full");
         }
         if (front == -1) {
             front = 0;
@@ -53,12 +53,11 @@ class Deque {
         return value;
     }
 
-    void pollFirst() {
+    int pollFirst() {
         if (isEmpty()) {
-            System.out.println("Queue Underflow\n");
-            return;
+            throw new RuntimeException("Queue is already empty");
         }
-
+        int f = front;
         if (front == rear) {
             front = -1;
             rear = -1;
@@ -69,13 +68,14 @@ class Deque {
                 front = front + 1;
             }
         }
+        return arr[f];
     }
 
-    void pollLast() {
+    int pollLast() {
         if (isEmpty()) {
-            System.out.println(" Queue Underflow");
-            return;
+            throw new RuntimeException("Queue is already empty");
         }
+        int f = front;
         if (front == rear) {
             front = -1;
             rear = -1;
@@ -84,6 +84,7 @@ class Deque {
         } else {
             rear = rear - 1;
         }
+        return arr[f];
     }
 }
 
