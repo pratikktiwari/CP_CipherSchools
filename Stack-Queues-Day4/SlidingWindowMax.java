@@ -1,11 +1,11 @@
 import java.util.PriorityQueue;
+import java.util.Comparator;
 
 public class SlidingWindowMax {
     static void findMaxOfWindow(int arr[], int k) {
         PriorityQueue<Integer> pq = new PriorityQueue<>(new Comparator<Integer>() {
-            @Override
             public int compare(Integer x, Integer y) {
-                return x < y ? 1 : -1;
+                return x < y ? 0 : -1;
             }
         });
         for (int i = 0; i < arr.length - k + 1; i++) {
