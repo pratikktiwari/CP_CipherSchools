@@ -7,7 +7,7 @@ public class MinStack {
         return getMin;
     }
 
-    static void push(Stack<Intger> s, int val) {
+    static void push(Stack<Integer> s, int val) {
         if (s.isEmpty()) {
             s.push(val);
             getMin = val;
