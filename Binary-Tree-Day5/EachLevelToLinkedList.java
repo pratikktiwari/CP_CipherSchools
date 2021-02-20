@@ -60,7 +60,7 @@ class Tree {
     }
 }
 
-public class EachLevelToBinaryTree {
+public class EachLevelToLinkedList {
     // Doubly LinkedList where right represents next pointer, left represents prev
     // pointer
     static List<TreeNode> convertLevelToList(TreeNode root) {
