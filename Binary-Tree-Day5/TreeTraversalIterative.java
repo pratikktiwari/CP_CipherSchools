@@ -82,6 +82,23 @@ public class TreeTraversalIterative {
         }
     }
 
+    public static void level_order_traverse(TreeNode root) {
+        if (root == null)
+            return;
+        Queue<TreeNode> q = new LinkedList<TreeNode>();
+        q.offer(root);
+        System.out.println();
+        while (!q.isEmpty()) {
+            TreeNode current = q.poll();
+            System.out.print(current.data + "  ");
+            if (current.left != null)
+                q.offer(current.left);
+            if (current.right != null)
+                q.offer(current.right);
+        }
+        System.out.println();
+    }
+
     public static void post_order(TreeNode root) {
         if (root == null)
             return;

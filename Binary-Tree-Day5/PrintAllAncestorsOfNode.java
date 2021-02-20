@@ -1,6 +1,8 @@
 import java.util.Queue;
 import java.util.Stack;
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.lang.Math;
 
 class TreeNode {
@@ -55,37 +57,35 @@ class Tree {
             print(prefix + "     ", n.left, true);
         }
     }
-
-    public void inorder(TreeNode root) {
-        if (root == null)
-            return;
-        inorder(root.left);
-        System.out.print(root.data + " ");
-        inorder(root.right);
-    }
-
-    public void preorder(TreeNode root) {
-        if (root == null)
-            return;
-        System.out.print(root.data + " ");
-        inorder(root.left);
-        inorder(root.right);
-    }
-
-    public void postorder(TreeNode root) {
-        if (root == null)
-            return;
-        inorder(root.left);
-        inorder(root.right);
-        System.out.print(root.data + " ");
-    }
 }
 
-public class TreeTraversals {
+public class PrintAllAncestorsOfNode {
+    static boolean printAllAncestors(Node root, Node node, List<Integer> path) {
+        if (root == null) {
+            return false;
+        }
+        if (root == node) {
+            path.add(root.data);
+            return true;
+        }
+        path.add(root.data);
+        if ((root.left != null) && printAllAncestors(root.left, node, path)) {
+            return true;
+        }
+        if ((root.right != null) && printAllAncestors(root.right, node, path)) {
+            return true;
+        }
+        path.remove(path.size() - 1);
+        return false;
+    }
+
     public static void main(String[] args) {
         Tree t = new Tree();
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < 6; i++) {
             t.insert(i);
         }
+        // node = some node
+        List<Integer> list = new ArrayList<>();
+        printAllAncestors(t.root, node, list);
     }
 }

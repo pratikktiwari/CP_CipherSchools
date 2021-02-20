@@ -55,37 +55,26 @@ class Tree {
             print(prefix + "     ", n.left, true);
         }
     }
-
-    public void inorder(TreeNode root) {
-        if (root == null)
-            return;
-        inorder(root.left);
-        System.out.print(root.data + " ");
-        inorder(root.right);
-    }
-
-    public void preorder(TreeNode root) {
-        if (root == null)
-            return;
-        System.out.print(root.data + " ");
-        inorder(root.left);
-        inorder(root.right);
-    }
-
-    public void postorder(TreeNode root) {
-        if (root == null)
-            return;
-        inorder(root.left);
-        inorder(root.right);
-        System.out.print(root.data + " ");
-    }
 }
 
-public class TreeTraversals {
-    public static void main(String[] args) {
-        Tree t = new Tree();
-        for (int i = 0; i < 7; i++) {
-            t.insert(i);
+public class LeastCommonAncestor {
+    static TreeNode LCA(TreeNode root, TreeNode a, TreeNode b) {
+        if (root == null) {
+            return null;
         }
+        if (root == a || root == b) {
+            return root;
+        }
+        TreeNode left = LCA(root.left, a, b);
+        TreeNode right = LCA(root.right, a, b);
+
+        if (left != null && right != null) {
+            return root;
+        } else {
+            return a == null ? b : a;
+        }
+    }
+    public static void main(String[] args) {
+        
     }
 }
