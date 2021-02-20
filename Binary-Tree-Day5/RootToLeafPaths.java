@@ -102,7 +102,7 @@ public class RootToLeafPaths {
         ArrayList<Integer> al = new ArrayList<Integer>();
      
 
-    //  root_to_node_path(t.root, t.root.left.left.left, al);
+         //  root_to_node_path(t.root, t.root.left.left.left, al);
         print_paths(t.root);
         System.out.println(al);
     }
